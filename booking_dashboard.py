@@ -1,7 +1,8 @@
 import requests
 import json
 from icalendar import Calendar
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
+from zoneinfo import ZoneInfo
 import os
 
 NAVER_BUSINESS_ID = "893311"
@@ -18,7 +19,7 @@ def get_naver_status():
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
     }
 
-    today = date.today()
+    today = datetime.now(ZoneInfo("Asia/Seoul")).date()
     end = today + timedelta(days=DAYS_TO_SHOW)
 
     payload = {
@@ -132,7 +133,7 @@ def label_for(status):
 
 
 def build_html(naver_status, airbnb_status):
-    today = date.today()
+    today = datetime.now(ZoneInfo("Asia/Seoul")).date()
     days = [today + timedelta(days=i) for i in range(DAYS_TO_SHOW)]
 
     months = {}
@@ -244,7 +245,7 @@ def build_html(naver_status, airbnb_status):
     </head>
     <body>
         <h1>🏡 세모집_제주 예약 현황</h1>
-        <div class="updated">생성 시각: {date.today().isoformat()} 기준, 앞으로 {DAYS_TO_SHOW}일</div>
+        <div class="updated">생성 시각: {datetime.now(ZoneInfo("Asia/Seoul")).isoformat()[:16].replace("T", " ")} 기준, 앞으로 {DAYS_TO_SHOW}일</div>
         {warning_banner}
         {summary_box}
         {month_blocks}
