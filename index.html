@@ -1,0 +1,714 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="refresh" content="300">
+        <title>숙소 예약 현황 대시보드</title>
+        <style>
+            body { font-family: 'Malgun Gothic', sans-serif; background: #f5f5f7; margin: 0; padding: 30px; }
+            h1 { text-align: center; color: #222; }
+            .updated { text-align: center; color: #888; margin-bottom: 20px; }
+            .warning-banner { background: #ffe0e0; border: 2px solid #e74c3c; color: #c0392b; padding: 15px; border-radius: 10px; text-align: center; font-weight: bold; margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto; }
+            .ok-banner { background: #e0f9e6; border: 2px solid #27ae60; color: #1e8449; padding: 15px; border-radius: 10px; text-align: center; font-weight: bold; margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto; }
+            .summary-box { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+            .summary-item { background: white; padding: 8px 14px; border-radius: 20px; font-size: 13px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+            .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+            .month-block { background: white; border-radius: 12px; padding: 20px; margin: 0 auto 30px auto; max-width: 900px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+            .weekday-row { display: grid; grid-template-columns: repeat(7, 1fr); margin-bottom: 6px; }
+            .weekday { text-align: center; font-weight: bold; color: #666; font-size: 13px; }
+            .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+            .day { border: 1px solid #eee; border-radius: 6px; padding: 4px; min-height: 70px; font-size: 11px; }
+            .day.overlap { border: 3px solid #e74c3c; box-shadow: 0 0 6px rgba(231,76,60,0.5); }
+            .overlap-badge { background: #e74c3c; color: white; font-size: 9px; padding: 1px 4px; border-radius: 4px; text-align: center; margin-bottom: 2px; font-weight: bold; }
+            .empty { min-height: 70px; }
+            .date-num { font-weight: bold; font-size: 13px; margin-bottom: 3px; }
+            .platform { border-radius: 4px; padding: 2px 4px; margin-bottom: 2px; font-size: 10px; }
+        </style>
+    </head>
+    <body>
+        <h1>🏡 세모집_제주 예약 현황</h1>
+        <div class="updated">생성 시각: 2026-07-10 기준, 앞으로 90일</div>
+        <div class='ok-banner'>✅ 현재 겹치는 예약이 없습니다.</div>
+        
+    <div class="summary-box">
+        <div class="summary-item"><span class="dot" style="background:#f9c0c0"></span>네이버 예약마감: 25일</div>
+        <div class="summary-item"><span class="dot" style="background:#dcdcdc"></span>네이버 예약차단: 22일</div>
+        <div class="summary-item"><span class="dot" style="background:#f9c0c0"></span>에어비앤비 예약마감: 0일</div>
+        <div class="summary-item"><span class="dot" style="background:#dcdcdc"></span>에어비앤비 예약차단: 53일</div>
+    </div>
+    
+        
+        <div class='month-block'>
+            <h2>2026년 7월</h2>
+            <div class='weekday-row'>
+                <div class='weekday'>일</div><div class='weekday'>월</div><div class='weekday'>화</div><div class='weekday'>수</div><div class='weekday'>목</div><div class='weekday'>금</div><div class='weekday'>토</div>
+            </div>
+            <div class='calendar-grid'>
+                <div class='empty'></div><div class='empty'></div><div class='empty'></div><div class='empty'></div><div class='empty'></div>
+            <div class='day '>
+                <div class='date-num'>10</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>11</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>12</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>13</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>14</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>15</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>16</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>17</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>18</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>19</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>20</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>21</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>22</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>23</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>24</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>25</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>26</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>27</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>28</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>29</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>30</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>31</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            </div>
+        </div>
+        
+        <div class='month-block'>
+            <h2>2026년 8월</h2>
+            <div class='weekday-row'>
+                <div class='weekday'>일</div><div class='weekday'>월</div><div class='weekday'>화</div><div class='weekday'>수</div><div class='weekday'>목</div><div class='weekday'>금</div><div class='weekday'>토</div>
+            </div>
+            <div class='calendar-grid'>
+                <div class='empty'></div><div class='empty'></div><div class='empty'></div><div class='empty'></div><div class='empty'></div><div class='empty'></div>
+            <div class='day '>
+                <div class='date-num'>1</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>2</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>3</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>4</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>5</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>6</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>7</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>8</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>9</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>10</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>11</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>12</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>13</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>14</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>15</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>16</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>17</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>18</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>19</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>20</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>21</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>22</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>23</div>
+                
+                <div class='platform' style='background:#f9c0c0'>네이버 마감</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>24</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>25</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>26</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>27</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>28</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>29</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>30</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>31</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            </div>
+        </div>
+        
+        <div class='month-block'>
+            <h2>2026년 9월</h2>
+            <div class='weekday-row'>
+                <div class='weekday'>일</div><div class='weekday'>월</div><div class='weekday'>화</div><div class='weekday'>수</div><div class='weekday'>목</div><div class='weekday'>금</div><div class='weekday'>토</div>
+            </div>
+            <div class='calendar-grid'>
+                <div class='empty'></div><div class='empty'></div>
+            <div class='day '>
+                <div class='date-num'>1</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>2</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>3</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>4</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>5</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>6</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>7</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>8</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>9</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>10</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>11</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>12</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>13</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>14</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>15</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>16</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>17</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>18</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>19</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>20</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>21</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>22</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>23</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>24</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>25</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>26</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>27</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>28</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>29</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>30</div>
+                
+                <div class='platform' style='background:#d4f4dd'>네이버 가능</div>
+                <div class='platform' style='background:#d4f4dd'>에어비앤비 가능</div>
+            </div>
+            
+            </div>
+        </div>
+        
+        <div class='month-block'>
+            <h2>2026년 10월</h2>
+            <div class='weekday-row'>
+                <div class='weekday'>일</div><div class='weekday'>월</div><div class='weekday'>화</div><div class='weekday'>수</div><div class='weekday'>목</div><div class='weekday'>금</div><div class='weekday'>토</div>
+            </div>
+            <div class='calendar-grid'>
+                <div class='empty'></div><div class='empty'></div><div class='empty'></div><div class='empty'></div>
+            <div class='day '>
+                <div class='date-num'>1</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>2</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>3</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>4</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>5</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>6</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            <div class='day '>
+                <div class='date-num'>7</div>
+                
+                <div class='platform' style='background:#dcdcdc'>네이버 차단</div>
+                <div class='platform' style='background:#dcdcdc'>에어비앤비 차단</div>
+            </div>
+            
+            </div>
+        </div>
+        
+    </body>
+    </html>
+    
